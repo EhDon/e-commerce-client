@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed!</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #d5d5d5;
+            width: 500px;
+            height: 500px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card h1 {
+            color: rebeccapurple;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        #orderNumber {
+            font-weight: bold;
+            color: rebeccapurple;
+        }
+        #itemsList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #itemsList li {
+            margin: 5px 0;
+            background: #eee;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Your order has been confirmed</h1>
+    <p>Your order number is: <span id="orderNumber">----</span></p>
+    <h2>Items Ordered</h2>
+    <ul id="itemsList"></ul>
+
+    <p><strong>Total:</strong> $<span id="orderTotal">0.00</span></p>
+    <p>Thank you for shopping with us.</p>
+</div>
+
+
+<script>
+    fetch('') // add the order number end point here
+        .then(response => response.json())
+        .then(data => {
+            //display the order number
+            document.getElementById('orderNumber').textContent = data.orderNumber;
+
+            // list of items purchased
+            const list = document.getElementById('itemsList');
+            let total = 0;
+
+            data.items.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                total += itemTotal;
+
+                const li = document.createElement('li');
+                li.textContent = `${item.name} (x${item.quantity}) - $${itemTotal.toFixed(2)}`;
+                list.appendChild(li);
+            });
+
+            //  total
+            document.getElementById('orderTotal').textContent = total.toFixed(2);
+        })
+        .catch(err => {
+            console.error(err);
+            document.getElementById('orderNumber').textContent = 'Error fetching order';
+        });
+</script>
+
+</body>
+</html>
