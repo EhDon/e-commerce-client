@@ -24,6 +24,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            justify-content: space-between;
         }
 
         .card h1 {
@@ -47,6 +48,7 @@
             padding: 5px;
             border-radius: 5px;
         }
+
 
 
     </style>
@@ -88,7 +90,7 @@
         })
         .catch(err => {
             console.error(err);
-            document.getElementById('orderNumber').textContent = 'Error fetching order';
+            document.getElementById('orderNumber').textContent = 'Error fetching order number';
         });
 </script>
 
