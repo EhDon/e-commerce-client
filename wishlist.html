@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        h1 {
+            color:  rebeccapurple;
+        }
+
+        .wishlist {
+            width: 60%;
+            margin: 20px auto;
+        }
+
+        .item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        }
+
+        button {
+            background-color:  rebeccapurple;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b18ed1;
+        }
+    </style>
+</head>
+<body>
+
+<h1>My Wishlist</h1>
+
+<div class="wishlist" id="wishlist">
+    <div class="item">
+        <h3>Red Sneakers</h3>
+        <p>₦25,000</p>
+        <button onclick="addToCart('Red Sneakers')">Add to Cart</button>
+        <button onclick="removeItem(this)">Remove</button>
+    </div>
+
+    <div class="item">
+        <h3>Blue Hoodie</h3>
+        <p>₦15,000</p>
+        <button onclick="addToCart('Blue Hoodie')">Add to Cart</button>
+        <button onclick="removeItem(this)">Remove</button>
+    </div>
+</div>
+
+<script>
+    function addToCart(itemName) {
+        alert(itemName + " added to cart!");
+    }
+
+    function removeItem(button) {
+        button.parentElement.remove();
+        alert("Item removed from wishlist!");
+    }
+</script>
+</body>
+</html>
